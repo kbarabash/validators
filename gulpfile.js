@@ -13,22 +13,34 @@ gulp.task('test', function() {
         }));
 });
 
-var buildScript = function(config, callback) {
-    webpack(config, function (err, stats) {
-        if (err) {
-            throw new gutil.PluginError('webpack', err);
-        }
-        gutil.log('[build]', stats.toString({
-            // output options
-        }));
-        callback();
+(function build() {
+    var devCompiler = webpack(devWebpackConfig);
+
+    gulp.task('serve', function (callback) {
+        gulp.watch(['src/**/*.js'], ['build:dev']);
     });
-};
 
-gulp.task('serve', function(callback) {
-    buildScript(devWebpackConfig, callback);
-});
+    gulp.task('build:dev', function(callback) {
+        devCompiler.run(function (err, stats) {
+            if (err) {
+                throw new gutil.PluginError('webpack', err);
+            }
+            gutil.log('[serve-build]', stats.toString({
+                // output options
+            }));
+            callback();
+        });
+    });
 
-gulp.task('build', function(callback) {
-    buildScript(prodWebpackConfig, callback);
-});
+    gulp.task('build', function (callback) {
+        webpack(prodWebpackConfig, function (err, stats) {
+            if (err) {
+                throw new gutil.PluginError('webpack', err);
+            }
+            gutil.log('[build]', stats.toString({
+                // output options
+            }));
+            callback();
+        });
+    });
+})();

@@ -7,7 +7,6 @@ module.exports = {
         }]
     },
     devtool: 'source-map',
-    watch: true,
     entry: {
         app: './src/index.js'
     },
