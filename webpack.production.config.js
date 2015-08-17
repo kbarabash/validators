@@ -2,17 +2,16 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.js$/,
-            loaders: 'babel',
+            loaders: ['babel-loader'],
             exclude: /(node_modules|bower_components)/
         }]
     },
     entry: {
-        app: ['src/index.js']
+        app: './src/index.js'
     },
     output: {
-        path: "./build",
-        publicPath: "/assets/",
-        filename: "bundle.js"
+        path: './dist',
+        filename: 'validators.js'
     },
     resolve: {
         extensions: ['', '.js']

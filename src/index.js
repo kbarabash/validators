@@ -5,4 +5,6 @@
         validators: {},
         services: {}
     };
-})(window);
+    var a =54;
+    console.log({a});
+})(global || window);

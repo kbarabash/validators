@@ -3,8 +3,8 @@ var gutil = require('gulp-util');
 var jasmine = require('gulp-jasmine');
 var reporters = require('jasmine-reporters');
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var webpackConfig = require('.webpack.config.js');
+var devWebpackConfig = require('./webpack.dev.config.js');
+var prodWebpackConfig = require('./webpack.production.config.js');
 
 gulp.task('test', function() {
     return gulp.src('tests/test.js')
@@ -13,8 +13,8 @@ gulp.task('test', function() {
         }));
 });
 
-gulp.task('build', function(callback) {
-    webpack(webpackConfig, function (err, stats) {
+var buildScript = function(config, callback) {
+    webpack(config, function (err, stats) {
         if (err) {
             throw new gutil.PluginError('webpack', err);
         }
@@ -23,17 +23,12 @@ gulp.task('build', function(callback) {
         }));
         callback();
     });
-});
+};
 
 gulp.task('serve', function(callback) {
-    var compiler = webpack(webpackConfig);
+    buildScript(devWebpackConfig, callback);
+});
 
-    new WebpackDevServer(compiler, {
-    }).listen(8080, 'localhost', function (err) {
-        if (err) {
-            throw new gutil.PluginError('webpack-dev-server', err);
-        }
-        gutil.log('[serve]', 'http://localhost:8080/webpack-dev-server/index.html');
-        callback();
-    });
+gulp.task('build', function(callback) {
+    buildScript(prodWebpackConfig, callback);
 });
