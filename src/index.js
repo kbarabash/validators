@@ -1,8 +1,7 @@
-'use strict';
+import Validators from 'validators/validators';
 
-(function(global) {
-    global.VL = {
-        validators: {},
-        services: {}
-    };
-})(window);
+export default class VL {
+    getValidators() {
+        return Validators;
+    }
+};
