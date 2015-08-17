@@ -1,22 +1,24 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var jasmine = require('gulp-jasmine');
-var reporters = require('jasmine-reporters');
 var webpack = require('webpack');
 var devWebpackConfig = require('./webpack.dev.config.js');
 var prodWebpackConfig = require('./webpack.production.config.js');
+var notify = require('gulp-notify');
 
 gulp.task('test', function() {
     return gulp.src('tests/test.js')
-        .pipe(jasmine({
-            reporter: new reporters.JUnitXmlReporter()
+        .pipe(jasmine())
+        .on('error', notify.onError({
+            title: 'Jasmine Test Failed',
+            message: 'One or more tests failed, see the cli for details.'
         }));
 });
 
 (function build() {
     var devCompiler = webpack(devWebpackConfig);
 
-    gulp.task('serve', function (callback) {
+    gulp.task('serve', function() {
         gulp.watch(['src/**/*.js'], ['build:dev']);
     });
 

@@ -1,0 +1,1 @@
+require('./validators/items/email');
