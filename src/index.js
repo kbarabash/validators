@@ -1,4 +1,4 @@
-import Validators from 'validators/validators';
+import Validators from './validators/validators';
 
 export default class VL {
     getValidators() {

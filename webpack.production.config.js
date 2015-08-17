@@ -3,7 +3,7 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             loaders: ['babel-loader'],
-            exclude: /(node_modules|bower_components)/
+            exclude: /(node_modules|bower_components)/,
         }]
     },
     entry: {

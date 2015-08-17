@@ -1,4 +1,4 @@
-import Email from 'items/email.js';
+import Email from './items/email';
 
 var Validators = {
     email: Email
