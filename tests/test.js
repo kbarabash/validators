@@ -1,1 +1,0 @@
-require('./validators/items/email');
