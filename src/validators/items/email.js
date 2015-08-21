@@ -5,4 +5,7 @@ export default class Email extends AbstractValidator {
         super();
         this.name = 'EmailValidator';
     }
+    isValid(str) {
+        return false
+    }
 };

@@ -6,18 +6,18 @@ module.exports = function(config) {
             pattern: 'tests.webpack.js',
             watched: false
         }],
+        reporters: ['mocha'],
         frameworks: ['mocha'],
         preprocessors: {
             'tests.webpack.js': ['webpack']
         },
-        reporters: ['dots'],
         singleRun: true,
         webpack: {
             module: {
                 loaders: [{
-                    test: /\.js?$/,
-                    exclude: /node_modules/,
-                    loader: 'babel-loader'
+                    test: /\.js$/,
+                    loaders: ['babel-loader'],
+                    exclude: /(node_modules|bower_components)/
                 }]
             },
             watch: true

@@ -1,13 +1,15 @@
-// ES5 shims for Function.prototype.bind, Object.prototype.keys, etc.
+var Immutable = require('immutable');
 require('core-js/es5');
-// Create a Webpack require context so we can dynamically require our
-// project's modules. Exclude test files in this context.
-var projectContext = require.context('../src/', true, /\.test\.js$/);
-// Extract the module ids that Webpack uses to track modules.
-var projectModuleIds = projectContext.keys().map(module =>
-    String(projectContext.resolve(module)));
+
+var projectContext = require.context('../src', true, /\.test\.js$/);
+var projectModuleIds = Immutable.Set(
+    projectContext.keys().map(module => String(projectContext.resolve(module)))
+);
 
 beforeEach(() => {
-    // Remove our modules from the require cache before each test case.
-    projectModuleIds.forEach(id => delete require.cache[id]);
+    var cache = require.cache;
+    projectModuleIds.forEach(id => delete cache[id]);
 });
+
+var context = require.context('../src', true, /\.test\.js$/);
+context.keys().forEach(context);
