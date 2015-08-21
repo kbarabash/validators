@@ -1,6 +1,5 @@
 export default class AbstractValidator {
     isValid() {
-        console && console.log(this.name, ' isValid function should be reloaded');
-        return true
+        throw new Error('Function "isValid" should be reloaded for ' + this.name);
     }
 };
