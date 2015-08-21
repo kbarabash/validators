@@ -1,11 +1,15 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
-var devWebpackConfig = require('./webpack.dev.config.js');
-var prodWebpackConfig = require('./webpack.production.config.js');
+var webpackConfig = require('./webpack.config.js');
+
+var ENV = {
+    PROD: true,
+    DEV: false
+};
 
 (function build() {
-    var devCompiler = webpack(devWebpackConfig);
+    var devCompiler = webpack(webpackConfig(ENV.DEV));
 
     gulp.task('serve', function() {
         gulp.watch(['src/**/*.js'], ['build:dev']);
@@ -24,7 +28,7 @@ var prodWebpackConfig = require('./webpack.production.config.js');
     });
 
     gulp.task('build', function (callback) {
-        webpack(prodWebpackConfig, function (err, stats) {
+        webpack(webpackConfig(ENV.PROD), function (err, stats) {
             if (err) {
                 throw new gutil.PluginError('webpack', err);
             }
