@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "validators for browser and nodejs",
   "scripts": {
-    "test": "karma start ./tests/karma.conf.js",
+    "test": "karma start karma.conf.js",
     "build": "gulp build",
     "serve": "gulp serve"
   },
