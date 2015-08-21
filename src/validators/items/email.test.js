@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Email = require('../Email');
+var Email = require('./email');
 
 describe('Email', function() {
     it('init', function() {

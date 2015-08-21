@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "validators for browser and nodejs",
     "scripts": {
-        "test": "npm run build && gulp test",
+        "test": "karma start tests/karma.conf.js",
         "build": "gulp build",
         "serve": "gulp serve"
     },
@@ -26,19 +26,19 @@
         "babel": "5.8.21",
         "webpack": "1.11.0",
 
-        "karma": "0.12.31",
-        "karma-chai-sinon": "0.1.4",
+        "karma": "0.13.9",
+        "karma-chai-sinon": "2.10.1",
         "karma-es5-shim": "0.0.4",
         "karma-mocha-debug": "0.1.2",
         "karma-webpack": "1.7.0",
-        "core-js": "1.0.1",
-        "karma-phantomjs-launcher": "0.1.4",
-        "karma-mocha": "0.1.10",
+        "core-js": "1.1.1",
+        "karma-phantomjs-launcher": "0.2.1",
+        "karma-mocha": "0.2.0",
         "karma-cli": "0.1.0",
-        "chai": "2.2.0",
-        "mocha": "2.2.1",
-        "sinon": "1.12.0",
+        "chai": "3.2.0",
+        "mocha": "2.2.5",
+        "sinon": "1.16.1",
         "gulp-karma": "0.0.4",
-        "es5-shim": "4.1.1"
+        "es5-shim": "4.1.10"
     }
 }
